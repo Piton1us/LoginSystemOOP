@@ -23,23 +23,23 @@
       </header>
 
       <main>
-         <form action="" method="post">
+         <form action="actions/login.php" method="post">
             <h1>LOGIN</h1>
             
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
-            <button type="submit" class="btn-form">Sign in</button>
+            <button type="submit" class="btn-form" name="submit">LOGIN</button>
 
          </form>
 
-         <form action="" method="post">
+         <form action="actions/registration.php" method="post">
             <h1>SIGN UP</h1>
             <p>Don`t have an account yet? Sign up here!</p>
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
-            <input type="password" name="" placeholder="Repeat Password">
+            <input type="password" name="pwdrepeat" placeholder="Repeat Password">
             <input type="email" name="email" placeholder="E-mail">
-            <button type="submit" class="btn-form">Sign in</button>
+            <button type="submit" class="btn-form" name="submit">Sign up</button>
 
          </form>
 
