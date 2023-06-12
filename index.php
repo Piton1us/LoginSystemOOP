@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,15 +19,24 @@
       <header>
          <h2>Creative design</h2>
          <ul>
-            <li>User</li>
-            <li>Button</li>
+            <?php if (isset($_SESSION['userid'])) : ?>
+
+               <li><?php echo $_SESSION['username']; ?></li>
+               <li><a href="actions/logout.php">LOGOUT</a></li>
+
+            <?php else : ?>
+
+               <li><a href="#">SIGN UP</a></li>
+               <li><a href="#">LOGIN</a></li>
+
+            <?php endif; ?>
          </ul>
       </header>
 
       <main>
          <form action="actions/login.php" method="post">
             <h1>LOGIN</h1>
-            
+
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
             <button type="submit" class="btn-form" name="submit">LOGIN</button>

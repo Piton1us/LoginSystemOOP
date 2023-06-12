@@ -1,6 +1,6 @@
 <?php
 
-class SignUpCont
+class SignUpCont extends SignUp
 {
 
    private $username;
@@ -16,9 +16,41 @@ class SignUpCont
       $this->email = $email;
    }
 
+   public function signupUser()
+   {
+      if($this->emptyInput() == false){
+         header("Location: ../index.php?error=emptyinput");
+         exit();
+      }
+
+      if($this->invalidName() == false){
+         header("Location: ../index.php?error=username");
+         exit();
+      }
+
+      if($this->invalidEmail() == false){
+         header("Location: ../index.php?error=email");
+         exit();
+      }
+
+      if($this->pwdMatch() == false){
+         header("Location: ../index.php?error=passwordmatch");
+         exit();
+      }
+
+      if($this->usernameTakenCheck() == false){
+         header("Location: ../index.php?error=useroremailtaken");
+         exit();
+      }
+
+      $this->setUser($this->username,$this->password,$this->email);
+   
+   }
+   
+
    private function emptyInput()
    {
-      $result = null;
+      
       if(empty($this->username) || empty($this->password) || empty($this->pwdrepeat) || empty($this->email)){
          $result = false;
       }else{
@@ -66,8 +98,16 @@ class SignUpCont
       return $result;
    }
 
+   private function usernameTakenCheck()
+   {
+      $result = null;
+      if(!$this->checkUser($this->username, $this->email)){
+         $result = false;
+      }else{
+         $result = true;
+      }
+      
+      return $result;
+   }
+
 }
-
-
-
-?>
